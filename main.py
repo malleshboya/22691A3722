@@ -13,7 +13,7 @@ app.middleware("http")(log_middleware)
 
 class URLRequest(BaseModel):
     url: HttpUrl
-    validity: int = 30  # in minutes
+    validity: int = 30
     shortcode: str | None = None
 
 
@@ -57,7 +57,7 @@ async def redirect_to_url(request: Request, shortcode: str):
     click_stats.setdefault(shortcode, []).append({
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "referrer": request.headers.get("referer", "unknown"),
-        "geo": "IN"  # Mocked geo-location
+        "geo": "IN"
     })
 
     return RedirectResponse(url=entry["original_url"])
