@@ -3,6 +3,6 @@ async def log_middleware(request, call_next):
     method = request.method
     url = str(request.url)
     timestamp = datetime.utcnow().isoformat() + "Z"
-    print(f"[{timestamp}] {method} request to {url}")  # Replace with custom logger if needed
+    print(f"[{timestamp}] {method} request to {url}")
     response = await call_next(request)
     return response
